@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.card {
+    @apply mt-8 block rounded-lg border border-gray-200 shadow-md;
+}
+
+.primary-button{
+@apply bg-orange-300 w-full p-2 mt-2 rounded text-sm hover:bg-orange-700 hover:text-white;
+}
+
+.secondary-button{
+@apply bg-orange-500 p-2 m-3 rounded text-sm hover:bg-orange-700 hover:text-white;
+}
+
+.card_1{
+    @apply border border-gray-200 m-8
+  }
