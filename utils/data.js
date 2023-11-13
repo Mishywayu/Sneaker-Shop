@@ -97,7 +97,7 @@ const data = {
             price_before: '900',
         },
         {
-            id: '7',
+            id: 7,
             profile: '',
             main_img: '/images/sneaker_2.jpeg',
             img_1: '/images/sneaker_2.jpeg',

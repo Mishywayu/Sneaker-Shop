@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout'
 import data from '@/utils/data';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react'
 
@@ -8,16 +9,28 @@ export default function ProductScreen() {
     const { id } = query;
     const product = data.products.find((x) => x.id === id);
     if (!product) {
-        return <div>Product Not found</div>;
+        return(
+            <Layout>
+                <div className=''>
+                    <div className='w-72 h-64 mx-auto'>
+                        <img src='/images/found.png' alt='' className='w-full h-full animate-bounce' />
+                    </div>
+                    <div className='mt-4 flex flex-col items-center justify-center'>
+                        <p className='text-center text-4xl font-semibold'>Oooops!!! <span className='text-orange-500'>Sneaker</span> Not Found.</p>
+                        <Link href='/' className='bg-orange-400 mt-4 p-2 text-center text-white text-sm font-thin hover:bg-orange-600 rounded-lg'>Check out other Products</Link>
+                    </div>
+                </div>
+            </Layout>
+        );
     }
   return (
     <Layout title={product.title}>
-        <div className='flex p-40 pb-0 pt-0 w-full'>
+        <div className='flex md:flex-row md:p-40 md:pb-0 md:pt-0 flex-col w-full'>
             {/* image div */}
-            <div className='w-1/2'>
-                <div className='m-8'>
-                    <img src={product.main_img} alt='' className='w-full h-full rounded-xl' />
-                    <div className='flex pt-5 gap-7'>
+            <div className='md:w-1/2'>
+                <div className='md:m-8'>
+                    <img src={product.main_img} alt='' className='w-full h-full md:rounded-xl' />
+                    <div className='hidden md:flex md:pt-5 md:gap-7'>
                         <div className='w-20 rounded-xl'><img src={product.img_1} alt='' className='w-full h-full rounded-xl' /></div>
                         <div className='w-20 rounded-xl'><img src={product.img_2} alt='' className='w-full h-full rounded-xl' /></div>
                         <div className='w-20 rounded-xl'><img src={product.img_3} alt='' className='w-full h-full rounded-xl' /></div>
@@ -27,7 +40,7 @@ export default function ProductScreen() {
             </div>
 
             {/* description div */}
-            <div className='w-1/2 p-20'>
+            <div className='md:w-1/2 md:p-20 pt-12'>
                 <h4 className='text-sm text-orange-400 font-bold'>{product.company_name}</h4>
                 <h1 className='pt-2 text-3xl font-bold'>{product.title}</h1>
                 <p className='pt-8 text-sm text-slate-400 leading-normal'>{product.description}</p>
