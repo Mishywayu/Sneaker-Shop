@@ -1,7 +1,22 @@
+import { Store } from '@/utils/Store';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+
+const CartCard = ({ cartItems }) => (
+  <div className='bg-white p-4 shadow-md absolute right-0 mt-10'>
+    <h3 className='text-lg font-bold mb-2'>
+      <ul>
+        {cartItems.map((item, index) => (
+          <li key={index}></li>
+        ))}
+      </ul>
+    </h3>
+  </div>
+);
 
 export default function Navbar() {
+  const { state, dispatch } = useContext(Store);
+  const { cart } = state;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -34,7 +49,14 @@ export default function Navbar() {
 
         {/* Cart and Profile Buttons */}
         <div className='md:mx-auto flex float-right gap-5'>
-            <button><img src='/images/icon-cart.svg' alt='cart' /></button>
+            <button><img src='/images/icon-cart.svg' alt='cart' />
+            {cart.cartItems.length > 0 && (
+              <span className='absolute top-0 right-0 bg-red-500 text-white p-1 runded-full'>
+                {cart.cartItems.length}
+              </span>
+            )}
+            {cart.cartItems.length > 0 && <CartCard cartItems={cart.cartItems}/>}
+            </button>
             <button><img src='/images/image-avatar.png' alt='profile' width={50} /></button>
         </div>
 
