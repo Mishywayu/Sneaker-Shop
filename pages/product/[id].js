@@ -32,8 +32,6 @@ export default function ProductScreen() {
     const handleAddToCart = () => {
         const newItem = { quantity, }
         dispatch({ type: 'CART_ADD_ITEM', payload: newItem });
-
-        setQuantity(0);
     };
 
     // Products from data.js
